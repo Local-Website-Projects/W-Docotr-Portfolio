@@ -37,3 +37,29 @@ if(isset($_POST['update_basic_info'])){
         ";
     }
 }
+
+
+if(isset($_POST['update_social_media'])){
+    $id = $db_handle->checkValue($_POST['id']);
+    $whatsapp = $db_handle->checkValue($_POST['whatsapp']);
+    $facebook = $db_handle->checkValue($_POST['facebook']);
+    $linkedin = $db_handle->checkValue($_POST['linkedin']);
+    $instagram = $db_handle->checkValue($_POST['instagram']);
+
+    $update_social_media = $db_handle->insertQuery("UPDATE `doctors_social_media` SET `whatsapp`='$whatsapp',`facebook`='$facebook',`linkedin`='$linkedin',`instagram`='$instagram', `updated_at`='$inserted_at' WHERE `doctors_id` = '$id'");
+    if($update_social_media){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Social-Media';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Social-Media';
+</script>
+        ";
+    }
+}

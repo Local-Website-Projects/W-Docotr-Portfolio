@@ -80,10 +80,27 @@
                                 <div class="rs-banner-social">
                                     <div class="rs-banner-social">
                                         <div class="rs-theme-social">
-                                            <a href="#"><i class="ri-whatsapp-fill"></i></a>
-                                            <a href="#"><i class="ri-facebook-fill"></i></a>
-                                            <a href="#"><i class="ri-linkedin-fill"></i></a>
-                                            <a href="#"><i class="ri-instagram-line"></i></a>
+                                            <?php if($fetch_doctor_social_media[0]['whatsapp'] != "#"){
+                                                ?>
+                                                <a href="https://wa.me/<?php echo $fetch_doctor_social_media[0]['whatsapp'];?>"><i class="ri-whatsapp-fill"></i></a>
+                                                <?php
+                                            }?>
+
+                                            <?php if($fetch_doctor_social_media[0]['facebook'] != "#"){
+                                                ?>
+                                                <a href="<?php echo $fetch_doctor_social_media[0]['facebook'];?>"><i class="ri-facebook-fill"></i></a>
+                                                <?php
+                                            }?>
+                                            <?php if($fetch_doctor_social_media[0]['linkedin'] != "#"){
+                                                ?>
+                                                <a href="<?php echo $fetch_doctor_social_media[0]['linkedin'];?>"><i class="ri-linkedin-fill"></i></a>
+                                                <?php
+                                            }?>
+                                            <?php if($fetch_doctor_social_media[0]['instagram'] != "#"){
+                                                ?>
+                                                <a href="<?php echo $fetch_doctor_social_media[0]['instagram'];?>"><i class="ri-instagram-line"></i></a>
+                                                <?php
+                                            }?>
                                         </div>
                                     </div>
                                 </div>

@@ -20,6 +20,14 @@
                     <span class="menu-text">Basic Info</span>
                 </a>
             </div>
+            <div class="menu-item ">
+                <a href="Social-Media" class="menu-link">
+							<span class="menu-icon">
+								<iconify-icon icon="ph:open-ai-logo-duotone"></iconify-icon>
+							</span>
+                    <span class="menu-text">Social Media</span>
+                </a>
+            </div>
             <div class="menu-item has-sub ">
                 <a href="#" class="menu-link">
 							<span class="menu-icon">

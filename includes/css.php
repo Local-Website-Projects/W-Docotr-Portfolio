@@ -5,6 +5,7 @@ date_default_timezone_set("Asia/Dhaka");
 $inserted_at = date("Y-m-d H:i:s");
 
 $fetch_doctor_basic_info = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` WHERE `doctors_id` = 1");
+$fetch_doctor_social_media = $db_handle->runQuery("SELECT * FROM `doctors_social_media` WHERE `doctors_id` = 1");
 
 ?>
 
