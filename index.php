@@ -44,7 +44,7 @@
                         <div class="rs-banner-content">
                                 <span class="rs-banner-subtitle wow fadeInUp" data-wow-delay=".3s"
                                       data-wow-duration=".7s">Family Doctor</span>
-                            <h1 class="rs-banner-title wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".9s">I'm Dr. Kico Koushik
+                            <h1 class="rs-banner-title wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".9s">I'm Dr. <?php echo $fetch_doctor_basic_info[0]['doctors_name'];?>
                                 <span class="rs-mark-text">
                               Expert
                               <span class="cd-headline slide rs-title-slide">

@@ -64,20 +64,22 @@ $fetch_doctor_data = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` wh
                             <div id="formControls" class="mb-5">
                                 <div class="card">
                                     <?php
-                                    if($_SESSION['status'] == 'Success'){
-                                        ?>
-                                        <div class="alert alert-success mt-3 mb-3">
-                                            <strong>Success!</strong> Information updated successfully.
-                                        </div>
-                                        <?php
-                                    } if($_SESSION['status'] == 'Error'){
-                                        ?>
-                                        <div class="alert alert-danger mt-3 mb-3">
-                                            <strong>Sorry!</strong> Something went wrong.
-                                        </div>
-                                        <?php
+                                    if(isset($_SESSION['status'])){
+                                        if($_SESSION['status'] == 'Success'){
+                                            ?>
+                                            <div class="alert alert-success mt-3 mb-3">
+                                                <strong>Success!</strong> Information updated successfully.
+                                            </div>
+                                            <?php
+                                        } if($_SESSION['status'] == 'Error'){
+                                            ?>
+                                            <div class="alert alert-danger mt-3 mb-3">
+                                                <strong>Sorry!</strong> Something went wrong.
+                                            </div>
+                                            <?php
+                                        }
+                                        unset($_SESSION['status']);
                                     }
-                                    unset($_SESSION['status']);
                                     ?>
 
                                     <div class="card-header with-btn">
@@ -104,6 +106,9 @@ $fetch_doctor_data = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` wh
                                                         <label class="form-label" for="exampleFormControlInput1">Email</label>
                                                         <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="Email (name@example.com)" value="<?php echo $fetch_doctor_data[0]['doctors_email'];?>" required>
                                                     </div>
+                                                    <div class="form-group mb-3 mt-5">
+                                                        <button type="submit" name="update_basic_info" class="btn btn-theme">Update</button>
+                                                    </div>
                                                 </div>
                                                 <div class="col-xl-6">
                                                     <div class="form-group mb-3">
@@ -114,10 +119,11 @@ $fetch_doctor_data = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` wh
                                                         <label class="form-label" for="exampleFormControlInput1">Contact Number</label>
                                                         <input type="text" class="form-control" id="exampleFormControlInput1" name="contact_number" placeholder="Contact Number" value="<?php echo $fetch_doctor_data[0]['doctors_phone_number'];?>" required>
                                                     </div>
-                                                    <input type="hidden" value="<?php echo $_SESSION['admin'];?>" name="id"/>
-                                                    <div class="form-group mb-3 mt-5">
-                                                        <button type="submit" name="update_basic_info" class="btn btn-theme">Update</button>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label" for="exampleFormControlInput1">Years of Experience</label>
+                                                        <input type="text" class="form-control" id="exampleFormControlInput1" name="year_exp" placeholder="Contact Number" value="<?php echo $fetch_doctor_data[0]['doctors_years_of_experience'];?>" required>
                                                     </div>
+                                                    <input type="hidden" value="<?php echo $_SESSION['admin'];?>" name="id"/>
                                                 </div>
 
                                             </div>

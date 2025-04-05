@@ -47,7 +47,7 @@
                         <div class="rs-breadcrumb-menu text-center">
                             <nav>
                                 <ul>
-                                    <li><span><a href="index.html">Home</a></span></li>
+                                    <li><span><a href="Home">Home</a></span></li>
                                     <li><span>About</span></li>
                                 </ul>
                             </nav>
@@ -68,8 +68,8 @@
                         <div class="rs-about-thumb">
                             <img src="assets/images/about/about-thumb-10.png" alt="image">
                             <div class="rs-about-exp gsap-move up-100 start-70">
-                                <h3 class="rs-about-exp-title"><span data-purecounter-duration="1" data-purecounter-end="30"
-                                                                     class="purecounter">30</span>+</h3>
+                                <h3 class="rs-about-exp-title"><span data-purecounter-duration="1" data-purecounter-end="<?php echo $fetch_doctor_basic_info[0]['doctors_years_of_experience'];?>"
+                                                                     class="purecounter"><?php echo $fetch_doctor_basic_info[0]['doctors_years_of_experience'];?></span>+</h3>
                                 <p>Years of Experience</p>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                            <img src="assets/images/shape/small-arrow.png" alt="image">
                            About Me
                         </span>
-                            <h2 class="rs-section-title mb-15 rs-split-text-enable split-in-fade">My Name is <span class="rs-text-primary">Marshall</span> </h2>
+                            <h2 class="rs-section-title mb-15 rs-split-text-enable split-in-fade">My Name is <span class="rs-text-primary"><?php echo $fetch_doctor_basic_info[0]['doctors_name'];?></span> </h2>
                             <p class="rs-about-designation">Freelance Designer &amp; Developer</p>
                             <p class="rs-about-description">Hello there, My name is Marshall. I’m a freelancer, I’m winner
                                 of the world’s most prestigious web design awards in the fields of UI, UX, and innovation.
@@ -93,19 +93,19 @@
                             <ul>
                                 <li>
                                     Age
-                                    <span>30 Years</span>
+                                    <span><?php echo $fetch_doctor_basic_info[0]['doctors_age'];?> Years</span>
                                 </li>
                                 <li>
                                     Bron In
-                                    <span>Los Angeles, USA</span>
+                                    <span><?php echo $fetch_doctor_basic_info[0]['doctors_birthplace'];?></span>
                                 </li>
                                 <li>
                                     Phone
-                                    <span><a href="tel:+12346691234"> +123-4669-1234 </a></span>
+                                    <span><a href="tel:+88<?php echo $fetch_doctor_basic_info[0]['doctors_phone_number'];?>"> <?php echo $fetch_doctor_basic_info[0]['doctors_phone_number'];?> </a></span>
                                 </li>
                                 <li>
                                     Email
-                                    <span><a href="mailto:marshal@gmail.com">marshal@gmail.com</a></span>
+                                    <span><a href="mailto:<?php echo $fetch_doctor_basic_info[0]['doctors_email'];?>"><?php echo $fetch_doctor_basic_info[0]['doctors_email'];?></a></span>
                                 </li>
                             </ul>
                         </div>

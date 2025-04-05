@@ -1,3 +1,13 @@
+<?php
+require_once('admin/config/dbConfig.php');
+$db_handle = new DBController();
+date_default_timezone_set("Asia/Dhaka");
+$inserted_at = date("Y-m-d H:i:s");
+
+$fetch_doctor_basic_info = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` WHERE `doctors_id` = 1");
+
+?>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Place favicon.ico in the root directory -->
 <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
