@@ -31,7 +31,7 @@
             <div class="menu-item ">
                 <a href="Expertise" class="menu-link">
 							<span class="menu-icon">
-								<iconify-icon icon="ph:open-ai-logo-duotone"></iconify-icon>
+								<iconify-icon icon="ph:user-focus-duotone"></iconify-icon>
 							</span>
                     <span class="menu-text">Expertise</span>
                 </a>
