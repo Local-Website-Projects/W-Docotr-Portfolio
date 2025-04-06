@@ -129,111 +129,36 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-5">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="rs-skill-wrapper wow fadeInUp" data-wow-delay=".3s">
-                        <div class="rs-skill-item">
-                            <div class="rs-skill-top">
-                                <div class="rs-skill-icon">
-                                    <img src="assets/images/icon/figma.png" alt="image">
+            <div class="row g-5 d-flex align-items-center justify-content-center">
+                <?php
+                for ($i=0; $i < $fetch_expertise_no; $i++) {
+                    ?>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="rs-skill-wrapper wow fadeInUp" data-wow-delay=".3s">
+                            <div class="rs-skill-item">
+                                <div class="rs-skill-top">
+                                    <h5 class="rs-skill-title"><?php echo $fetch_expertise[$i]['title'];?></h5>
                                 </div>
-                                <h5 class="rs-skill-title">Figma</h5>
-                            </div>
-                            <div class="rs-skill-bottom">
-                                <div class="rs-skill-description">
-                                    <p> I have had the opportunity to work on several projects.</p>
-                                </div>
-                                <div class="rs-skill-progress">
-                                    <div class="single-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="rs-skill-bottom">
+                                    <div class="rs-skill-description">
+                                        <p> <?php echo $fetch_expertise[$i]['description'];?></p>
+                                    </div>
+                                    <div class="rs-skill-progress">
+                                        <div class="single-progress">
+                                            <div class="progress">
+                                                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s" role="progressbar" style="width: 90%" aria-valuenow="<?php echo $fetch_expertise[$i]['percentage'];?>" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                                <span class="progress-number"><?php echo $fetch_expertise[$i]['percentage'];?>%</span>
                                             </div>
-                                            <span class="progress-number">90%</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="rs-skill-wrapper wow fadeInUp" data-wow-delay=".5s">
-                        <div class="rs-skill-item">
-                            <div class="rs-skill-top">
-                                <div class="rs-skill-icon">
-                                    <img src="assets/images/icon/wordpress.png" alt="image">
-                                </div>
-                                <h5 class="rs-skill-title">WordPress</h5>
-                            </div>
-                            <div class="rs-skill-bottom">
-                                <div class="rs-skill-description">
-                                    <p> We are helping client to create UI websites.</p>
-                                </div>
-                                <div class="rs-skill-progress">
-                                    <div class="single-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                            <span class="progress-number">95%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="rs-skill-wrapper wow fadeInUp" data-wow-delay=".7s">
-                        <div class="rs-skill-item">
-                            <div class="rs-skill-top">
-                                <div class="rs-skill-icon">
-                                    <img src="assets/images/icon/react.png" alt="image">
-                                </div>
-                                <h5 class="rs-skill-title">React</h5>
-                            </div>
-                            <div class="rs-skill-bottom">
-                                <div class="rs-skill-description">
-                                    <p> Contrary the popular belief Lorem Ipsum not simply.</p>
-                                </div>
-                                <div class="rs-skill-progress">
-                                    <div class="single-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                            <span class="progress-number">80%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="rs-skill-wrapper wow fadeInUp" data-wow-delay=".9s">
-                        <div class="rs-skill-item">
-                            <div class="rs-skill-top">
-                                <div class="rs-skill-icon">
-                                    <img src="assets/images/icon/html.png" alt="image">
-                                </div>
-                                <h5 class="rs-skill-title">HTML</h5>
-                            </div>
-                            <div class="rs-skill-bottom">
-                                <div class="rs-skill-description">
-                                    <p> Excepteur sint occaecat sunt in culpa qui officia.</p>
-                                </div>
-                                <div class="rs-skill-progress">
-                                    <div class="single-progress">
-                                        <div class="progress">
-                                            <div class="progress-bar wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay=".3s" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                            <span class="progress-number">85%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </section>

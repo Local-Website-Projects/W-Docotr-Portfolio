@@ -6,6 +6,8 @@ $inserted_at = date("Y-m-d H:i:s");
 
 $fetch_doctor_basic_info = $db_handle->runQuery("SELECT * FROM `doctors_basic_info` WHERE `doctors_id` = 1");
 $fetch_doctor_social_media = $db_handle->runQuery("SELECT * FROM `doctors_social_media` WHERE `doctors_id` = 1");
+$fetch_expertise = $db_handle->runQuery("select * from doctors_expertise where `doctors_id` = 1 order by expertise_id desc");
+$fetch_expertise_no = $db_handle->numRows("select * from doctors_expertise where `doctors_id` = 1 order by expertise_id desc");
 
 ?>
 

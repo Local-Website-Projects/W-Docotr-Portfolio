@@ -49,9 +49,13 @@
                               Expert
                               <span class="cd-headline slide rs-title-slide">
                                  <span class="cd-words-wrapper">
-                                    <b class="is-hidden ">Medicine</b>
-                                    <b class="is-visible ">Cardiology</b>
-                                    <b class="is-hidden ">Diabetes</b>
+                                     <?php
+                                     for ($i=0; $i < $fetch_expertise_no; $i++) {
+                                         ?>
+                                         <b class="<?php if ($i==0) echo 'is-visible'; else echo 'is-hiden'?>"><?php echo $fetch_expertise[$i]['title'];?></b>
+                                         <?php
+                                     }
+                                     ?>
                                  </span>
                                     </span>
                                     </span>

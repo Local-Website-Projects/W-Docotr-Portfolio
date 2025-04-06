@@ -63,3 +63,28 @@ if(isset($_POST['update_social_media'])){
         ";
     }
 }
+
+
+if(isset($_POST['update_expertise'])){
+    $id = $db_handle->checkValue($_POST['expertise_id']);
+    $expertise_name = $db_handle->checkValue($_POST['expertise_name']);
+    $percent = $db_handle->checkValue($_POST['percent']);
+    $desc = $db_handle->checkValue($_POST['desc']);
+
+    $update_expertise = $db_handle->insertQuery("UPDATE `doctors_expertise` SET `title`='$expertise_name',`description`='$desc',`percentage`='$percent',`updated_at`='$inserted_at' WHERE `expertise_id` = '$id'");
+    if($update_expertise){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Expertise';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Expertise';
+</script>
+        ";
+    }
+}
