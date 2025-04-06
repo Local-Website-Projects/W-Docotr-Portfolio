@@ -88,3 +88,27 @@ if(isset($_POST['update_expertise'])){
         ";
     }
 }
+
+if(isset($_POST['update_experience'])){
+    $id = $db_handle->checkValue($_POST['experience_id']);
+    $experience_title = $db_handle->checkValue($_POST['experience_title']);
+    $short_desc = $db_handle->checkValue($_POST['short_desc']);
+    $duration = $db_handle->checkValue($_POST['duration']);
+
+    $update_experience = $db_handle->insertQuery("UPDATE `doctors_experience` SET `experience_title`='$experience_title',`short_desc`='$short_desc',`duration`='$duration',`updated_at`='$inserted_at' WHERE `experience_id` = '$id'");
+    if($update_experience){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Experience';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Experience';
+</script>
+        ";
+    }
+}

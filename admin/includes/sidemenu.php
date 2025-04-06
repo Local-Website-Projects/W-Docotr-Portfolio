@@ -36,6 +36,14 @@
                     <span class="menu-text">Expertise</span>
                 </a>
             </div>
+            <div class="menu-item ">
+                <a href="Experience" class="menu-link">
+							<span class="menu-icon">
+								<iconify-icon icon="ph:user-focus-duotone"></iconify-icon>
+							</span>
+                    <span class="menu-text">Experience</span>
+                </a>
+            </div>
             <div class="menu-item has-sub ">
                 <a href="#" class="menu-link">
 							<span class="menu-icon">

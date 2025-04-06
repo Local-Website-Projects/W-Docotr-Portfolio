@@ -12,6 +12,7 @@ RewriteRule ^Update-Password$ updatePassword.php [L]
 RewriteRule ^Basic-Info$ basicInfo.php [L]
 RewriteRule ^Social-Media$ socialMedia.php [L]
 RewriteRule ^Expertise$ expertise.php [L]
+RewriteRule ^Experience$ experience.php [L]
 RewriteRule ^Update$ update.php [L]
 RewriteRule ^Insert$ insert.php [L]
 

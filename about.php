@@ -191,39 +191,6 @@
                                 <span class="rs-qualification-meta">I'm winner of the world's most prestigious web design awards in the fields.</span>
                             </div>
                         </div>
-                        <div class="rs-qualification-item">
-                            <div class="left-part wow fadeInLeft" data-wow-delay=".5s">
-                                <h6 class="rs-qualification-title">Online Marketing</h6>
-                                <span class="rs-qualification-meta">Many desktop publishing packages and web page editors now use Lorem Ipsum</span>
-                            </div>
-                            <div class="rs-divider"></div>
-                            <div class="right-part wow fadeInRight" data-wow-delay=".5s">
-                                <h6 class="rs-qualification-title">Sr. Developer</h6>
-                                <span class="rs-qualification-meta">2019 - 2020</span>
-                            </div>
-                        </div>
-                        <div class="rs-qualification-item">
-                            <div class="left-part wow fadeInLeft" data-wow-delay=".7s">
-                                <h6 class="rs-qualification-title">UI/UX Designer</h6>
-                                <span class="rs-qualification-meta">2018 - 2019</span>
-                            </div>
-                            <div class="rs-divider"></div>
-                            <div class="right-part wow fadeInRight" data-wow-delay=".7s">
-                                <h6 class="rs-qualification-title">Dribbble</h6>
-                                <span class="rs-qualification-meta">All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks.</span>
-                            </div>
-                        </div>
-                        <div class="rs-qualification-item">
-                            <div class="left-part wow fadeInLeft" data-wow-delay=".9s">
-                                <h6 class="rs-qualification-title">Upwork Market</h6>
-                                <span class="rs-qualification-meta">Making this the first true generator on the uses a dictionary of over 200</span>
-                            </div>
-                            <div class="rs-divider"></div>
-                            <div class="right-part wow fadeInRight" data-wow-delay=".9s">
-                                <h6 class="rs-qualification-title">Jr. Developer</h6>
-                                <span class="rs-qualification-meta">2016 - 2017</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
