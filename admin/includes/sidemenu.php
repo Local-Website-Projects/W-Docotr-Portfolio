@@ -39,7 +39,7 @@
             <div class="menu-item ">
                 <a href="Experience" class="menu-link">
 							<span class="menu-icon">
-								<iconify-icon icon="ph:user-focus-duotone"></iconify-icon>
+								 <iconify-icon icon="ph:handbag-simple-duotone"></iconify-icon>
 							</span>
                     <span class="menu-text">Experience</span>
                 </a>

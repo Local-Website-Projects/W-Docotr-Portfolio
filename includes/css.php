@@ -9,6 +9,9 @@ $fetch_doctor_social_media = $db_handle->runQuery("SELECT * FROM `doctors_social
 $fetch_expertise = $db_handle->runQuery("select * from doctors_expertise where `doctors_id` = 1 order by expertise_id desc");
 $fetch_expertise_no = $db_handle->numRows("select * from doctors_expertise where `doctors_id` = 1 order by expertise_id desc");
 
+$fetch_experience = $db_handle->runQuery("SELECT * FROM `doctors_experience` ORDER BY `experience_id` DESC");
+$fetch_experience_no = $db_handle->numRows("SELECT * FROM `doctors_experience` ORDER BY `experience_id` DESC");
+
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

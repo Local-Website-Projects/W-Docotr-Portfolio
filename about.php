@@ -180,18 +180,28 @@
             <div class="row justify-content-center g-5">
                 <div class="col-xl-9 col-lg-10">
                     <div class="rs-qualification-content">
-                        <div class="rs-qualification-item">
-                            <div class="left-part wow fadeInLeft" data-wow-delay=".3s">
-                                <h6 class="rs-qualification-title">Web Developer</h6>
-                                <span class="rs-qualification-meta">2021 - 20023 (Present)</span>
+                        <?php
+                        for ($i=0; $i<$fetch_experience_no; $i+=2){
+                            ?>
+                            <div class="rs-qualification-item">
+                                <div class="left-part wow fadeInLeft" data-wow-delay=".3s">
+                                    <h6 class="rs-qualification-title"><?php echo $fetch_experience[$i]['experience_title'];?></h6>
+                                    <span class="rs-qualification-meta"><?php echo $fetch_experience[$i]['duration'];?></span><br/>
+                                    <span class="rs-qualification-meta"><?php echo $fetch_experience[$i]['short_desc'];?></span>
+                                </div>
+                                <div class="rs-divider"></div>
+                                <div class="right-part wow fadeInRight" data-wow-delay=".3s">
+                                    <h6 class="rs-qualification-title"><?php echo $fetch_experience[$i+1]['experience_title'];?></h6>
+                                    <span class="rs-qualification-meta"><?php echo $fetch_experience[$i+1]['duration'];?></span><br/>
+                                    <span class="rs-qualification-meta"><?php echo $fetch_experience[$i+1]['short_desc'];?></span>
+                                </div>
                             </div>
-                            <div class="rs-divider"></div>
-                            <div class="right-part wow fadeInRight" data-wow-delay=".3s">
-                                <h6 class="rs-qualification-title">Envato Marketplace</h6>
-                                <span class="rs-qualification-meta">I'm winner of the world's most prestigious web design awards in the fields.</span>
-                            </div>
-                        </div>
+                            <?php
+                        }
+                        ?>
+
                     </div>
+
                 </div>
             </div>
         </div>
