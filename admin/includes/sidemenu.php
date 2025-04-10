@@ -44,6 +44,18 @@
                     <span class="menu-text">Experience</span>
                 </a>
             </div>
+            <div class="menu-item ">
+                <a href="Services" class="menu-link">
+							<span class="menu-icon">
+								 <iconify-icon icon="ph:chart-donut-duotone"></iconify-icon>
+							</span>
+                    <span class="menu-text">Services</span>
+                </a>
+            </div>
+
+
+
+
             <div class="menu-item has-sub ">
                 <a href="#" class="menu-link">
 							<span class="menu-icon">

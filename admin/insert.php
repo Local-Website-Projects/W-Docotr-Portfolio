@@ -59,3 +59,25 @@ if(isset($_POST['add_experience'])){
         ";
     }
 }
+
+if(isset($_POST['add_service'])){
+    $service_title = $db_handle->checkValue($_POST['service_title']);
+    $short_desc = $db_handle->checkValue($_POST['short_desc']);
+
+    $insert_service = $db_handle->insertQuery("INSERT INTO `doctors_services`(`doctor_id`, `service_title`, `short_desc`, `inserted_at`) VALUES ('$admin','$service_title','$short_desc','$inserted_at')");
+    if($insert_service){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Services';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Services';
+</script>
+        ";
+    }
+}

@@ -12,6 +12,10 @@ $fetch_expertise_no = $db_handle->numRows("select * from doctors_expertise where
 $fetch_experience = $db_handle->runQuery("SELECT * FROM `doctors_experience` ORDER BY `experience_id` DESC");
 $fetch_experience_no = $db_handle->numRows("SELECT * FROM `doctors_experience` ORDER BY `experience_id` DESC");
 
+
+$fetch_services = $db_handle->runQuery("SELECT * FROM `doctors_services` ORDER BY `doctor_service_id` DESC");
+$fetch_services_no = $db_handle->numRows("SELECT * FROM `doctors_services` ORDER BY `doctor_service_id` DESC");
+
 ?>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

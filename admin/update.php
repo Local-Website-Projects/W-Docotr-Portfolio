@@ -112,3 +112,27 @@ if(isset($_POST['update_experience'])){
         ";
     }
 }
+
+
+if(isset($_POST['update_service'])){
+    $id = $db_handle->checkValue($_POST['experience_id']);
+    $service_title = $db_handle->checkValue($_POST['service_title']);
+    $short_desc = $db_handle->checkValue($_POST['doctor_service_id']);
+
+    $update_service = $db_handle->insertQuery("UPDATE `doctors_services` SET `service_title`='$service_title',`short_desc`='$short_desc',`updated_at`='$inserted_at' WHERE `doctor_service_id`='$id'");
+    if($update_service){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Services';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Services';
+</script>
+        ";
+    }
+}
