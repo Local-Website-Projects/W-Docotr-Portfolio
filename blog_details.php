@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Services || HTML Template</title>
+    <title>Blog Details || HTML Template</title>
     <meta name="description" content="">
     <?php include ('includes/css.php');?>
 </head>
@@ -32,7 +32,6 @@
 
 <!-- Body main wrapper start -->
 <main>
-
     <!-- breadcrumb area start -->
     <section class="rs-breadcrumb-area rs-breadcrumb-one p-relative">
         <div class="rs-breadcrumb-bg bg-white" data-background="assets/images/bg/breadcrumb-bg-01.png"></div>
@@ -42,13 +41,14 @@
                 <div class="col-xxl-6 col-xl-8 col-lg-8">
                     <div class="rs-breadcrumb-content-wrapper">
                         <div class="rs-breadcrumb-title-wrapper text-center">
-                            <h1 class="rs-breadcrumb-title">Services</h1>
+                            <h1 class="rs-breadcrumb-title">Blog Details</h1>
                         </div>
                         <div class="rs-breadcrumb-menu text-center">
                             <nav>
                                 <ul>
                                     <li><span><a href="Home">Home</a></span></li>
-                                    <li><span>Services</span></li>
+                                    <li><span>Blog</span></li>
+                                    <li><span>Blog Details</span></li>
                                 </ul>
                             </nav>
                         </div>
@@ -59,14 +59,29 @@
     </section>
     <!-- breadcrumb area end -->
 
-    <!-- services area start -->
-    <?php include ('includes/services.php');?>
-    <!-- services area end -->
-
-
-    <!-- faq area start -->
-    <?php include ('includes/faq_contact.php');?>
-    <!-- faq area end -->
+    <!-- postbox area start -->
+    <?php
+    if(isset($_GET['id'])){
+        $fetch_blog_data = $db_handle->runQuery("SELECT * FROM doctors_blog WHERE blog_id = '".$_GET['id']."'");
+    }
+    ?>
+    <section class="rs-postbox-area section-space primary-bg">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="rs-postbox-details-wrapper">
+                        <div class="rs-postbox-details-thumb mb-40">
+                            <img src="<?php echo $fetch_blog_data[0]['blog_image'];?>" alt="image">
+                        </div>
+                        <div class="rs-postbox-details-content">
+                            <?php echo $fetch_blog_data[0]['blog_body'];?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- rs-postbox area end -->
 
 </main>
 <!-- Body main wrapper end -->

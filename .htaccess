@@ -5,6 +5,7 @@ RewriteRule ^Home$ index.php [L]
 RewriteRule ^Contact$ contact.php [L]
 RewriteRule ^Service$ service.php [L]
 RewriteRule ^Blog$ blog.php [L]
+RewriteRule ^Blog-Details$ blog_details.php [L]
 RewriteRule ^About$ about.php [L]
 
 # Remove "index.php" from URLs
