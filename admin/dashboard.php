@@ -89,7 +89,7 @@ if(isset($_GET['update'])){
                         <!-- BEGIN card -->
                         <div class="card h-100">
                             <!-- BEGIN card-header -->
-                            <div class="card-header">AVG SESS. DURATION</div>
+                            <div class="card-header">Contact Data</div>
                             <!-- END card-header -->
 
                             <!-- BEGIN card-body -->
