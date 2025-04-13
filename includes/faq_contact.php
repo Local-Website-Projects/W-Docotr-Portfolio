@@ -93,7 +93,7 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="rs-contact-form rs-contact-three has-white has-bg-black wow fadeInRight" data-wow-delay=".3s" data-wow-duration="1s">
                     <h3 class="rs-contact-title">Book Appointment</h3>
-                    <form id="contact-form" action="#" method="POST">
+                    <form action="#" method="POST">
                         <div class="row g-5">
                             <div class="col-md-6">
                                 <div class="rs-contact-input">
@@ -105,32 +105,9 @@
                                     <input id="email" name="email" type="email" placeholder="Email Address">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="rs-contact-input">
-                                    <input id="date" name="name" type="text" placeholder="dd/mm/yyyy">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="rs-contact-input">
-                                    <input id="time" name="name" type="text" placeholder="Time">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="rs-contact-input">
                                     <input id="phone" name="phone" type="text" placeholder="Phone Number">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="rs-contact-input">
-                                    <div class="rs-contact-input">
-                                        <select id="subject" name="subject">
-                                            <option>Select Department</option>
-                                            <option value="one">Hematology</option>
-                                            <option value="two">Orthopedics</option>
-                                            <option value="three">Pediatric</option>
-                                            <option value="four">Cardiology</option>
-                                        </select>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -140,7 +117,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="rs-contact-btn">
-                                    <button type="submit" class="rs-btn has-color has-radius w-100">Send Message</button>
+                                    <button type="submit" name="Contact" class="rs-btn has-color has-radius w-100">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -151,4 +128,70 @@
         </div>
     </div>
 </section>
+
+<?php
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+
+require 'admin/PHPMailer/src/Exception.php';
+require 'admin/PHPMailer/src/PHPMailer.php';
+require 'admin/PHPMailer/src/SMTP.php';
+date_default_timezone_set("Asia/Dhaka");
+$inserted_at = date("Y-m-d H:i:s");
+if(isset($_POST['Contact'])){
+    $name = $db_handle->checkValue($_POST['name']);
+    $email = $db_handle->checkValue($_POST['email']);
+    $phone = $db_handle->checkValue($_POST['phone']);
+    $message = $db_handle->checkValue($_POST['message']);
+
+    $insert_contact = $db_handle->insertQuery("INSERT INTO `doctors_contact`(`doctor_id`, `name`, `phone_number`, `email`, `message`, `inserted_at`) VALUES ('1','$name','$phone','$email','$message','$inserted_at')");
+    if($insert_contact){
+        $fetch_doctor_email = $db_handle->runQuery("select * from doctors_basic_info where doctors_id = '1'");
+        $subject = "You have received a new message";
+        $messege = "<html>
+<body style='background-color: #eee; font-size: 16px;'>
+<div style='max-width: 600px; min-width: 200px; background-color: #ffffff; padding: 20px; margin: auto;'>
+
+    <p style='text-align: center;color:#29a9e1;font-weight:bold'>You have received a new message</p>
+
+    <p style='color:black;text-align: center'>
+       You have received a new message from <strong>$name</strong>. Please login to your dashboard to view the details
+    </p>
+</div>
+
+</body>
+</html>";
+
+        $sender_name = "FrogBID Digital & Technologies";
+
+
+        $sender_email = "contact@frogbid.com";
+        $username = "contact@frogbid.com";
+        $password = "I1d:j31m4)4";
+
+        $receiver_email = $fetch_doctor_email[0]['doctors_email'];
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = "mail.frogbid.com";
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+        $mail->setFrom($sender_email, $sender_name);
+        $mail->Username = $username;
+        $mail->Password = $password;
+
+        $mail->CharSet = 'UTF-8';
+
+        $mail->Subject = $subject;
+        $mail->msgHTML($messege);
+        $mail->addAddress($receiver_email);
+        if ($mail->send()) {
+            $result = 1;
+            exit;
+        }
+    }
+}
+
+?>
 <!-- faq area end -->
