@@ -115,3 +115,28 @@ if(isset($_POST['add_blog'])){
         ";
     }
 }
+
+
+if(isset($_POST['add_patient'])){
+    $full_name = $db_handle->checkValue($_POST['full_name']);
+    $patient_age = $db_handle->checkValue($_POST['patient_age']);
+    $contact_number = $db_handle->checkValue($_POST['contact_number']);
+    $gender = $db_handle->checkValue($_POST['gender']);
+
+    $insert_patient = $db_handle->insertQuery("INSERT INTO `patients_data`(`full_name`, `age`, `contact_number`, `gender`, `inserted_at`) VALUES ('$full_name','$patient_age','$contact_number','$gender','$inserted_at')");
+    if($insert_patient){
+        $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Make-Prescription';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
+        echo "
+        <script>
+        window.location.href = 'Make-Prescription';
+</script>
+        ";
+    }
+}
