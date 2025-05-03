@@ -18,7 +18,17 @@ class DBController {
 
         $this->conn = $this->connectDB();
     }
+    function beginTransaction() {
+        $this->conn->begin_transaction();
+    }
 
+    function commit() {
+        $this->conn->commit();
+    }
+
+    function rollback() {
+        $this->conn->rollback();
+    }
     function connectDB() {
         $conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
         return $conn;

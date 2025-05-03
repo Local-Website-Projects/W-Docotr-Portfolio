@@ -125,14 +125,58 @@ if(isset($_POST['add_patient'])){
 
     $insert_patient = $db_handle->insertQuery("INSERT INTO `patients_data`(`full_name`, `age`, `contact_number`, `gender`, `inserted_at`) VALUES ('$full_name','$patient_age','$contact_number','$gender','$inserted_at')");
     if($insert_patient){
+        $fetch_last_id = $db_handle->runQuery("SELECT `patient_id` FROM `patients_data` ORDER BY patient_id DESC LIMIT 1");
         $_SESSION['status'] = 'Success';
+        echo "
+        <script>
+        window.location.href = 'Make-Prescription?id=".$fetch_last_id[0]['patient_id']."';
+</script>
+        ";
+    } else {
+        $_SESSION['status'] = 'Error';
         echo "
         <script>
         window.location.href = 'Make-Prescription';
 </script>
         ";
-    } else {
-        $_SESSION['status'] = 'Error';
+    }
+}
+
+
+if(isset($_POST['generate_prescription'])){
+    $patient_id = $db_handle->checkValue($_POST['patient_id']);
+    $patient_data = $db_handle->checkValue($_POST['patient_data']);
+    $patient_complain = $db_handle->checkValue($_POST['patient_complain']);
+    $medical_tests = $db_handle->checkValue($_POST['medical_tests']);
+    $doctor_observation = $db_handle->checkValue($_POST['doctor_observation']);
+
+    $medicine = implode(",", array_filter(array_map([$db_handle, 'checkValue'], $_POST['medicine'])));
+    $dose = implode(",", array_filter(array_map([$db_handle, 'checkValue'], $_POST['dose'])));
+    $meal = implode(",", array_filter(array_map([$db_handle, 'checkValue'], $_POST['meal'])));
+    $duration = implode(",", array_filter(array_map([$db_handle, 'checkValue'], $_POST['duration'])));
+
+    $doctor_advice = $db_handle->checkValue($_POST['doctor_advice']);
+
+    try {
+        $db_handle->beginTransaction();
+
+        $db_handle->insertQuery("INSERT INTO `prescription_data`(`medicine_name`, `patient_id`, `dose`, `meal`, `duration`, `inserted_at`) VALUES ('$medicine','$patient_id','$dose','$meal','$duration','$inserted_at')");
+        $fetch_patient_id = $db_handle->runQuery("SELECT `prescription_id` FROM `prescription_data` ORDER BY prescription_id DESC LIMIT 1");
+        $prescription_id = $fetch_patient_id[0]['prescription_id'];
+        $db_handle->insertQuery("INSERT INTO `prescription_general_info`(`prescription_id`, `patient_id`, `patient_data`, `inserted_at`) VALUES ('$prescription_id','$patient_id','$patient_data','$inserted_at')");
+        $db_handle->insertQuery("INSERT INTO `prescription_patient_symptoms`(`prescription_id`, `patient_id`, `patient_symptoms`, `inserted_at`) VALUES ('$prescription_id','$patient_id','$patient_complain','$inserted_at')");
+        $db_handle->insertQuery("INSERT INTO `prescription_test_info`(`prescription_id`, `patient_id`, `medical_test`, `inserted_at`) VALUES ('$prescription_id','$patient_id','$medical_tests','$inserted_at')");
+        $db_handle->insertQuery("INSERT INTO `prescription_doctor_observation`(`prescription_id`, `patient_id`, `doctor_observation`, `inserted_at`) VALUES ('$prescription_id','$patient_id','$doctor_observation','$inserted_at')");
+        $db_handle->insertQuery("INSERT INTO `prescription_advice`(`prescription_id`, `patient_id`, `doctors_advice`, `inserted_at`) VALUES ('$prescription_id','$patient_id','$doctor_advice','$inserted_at')");
+
+        $db_handle->commit();
+        echo "
+        <script>
+        window.location.href = 'Print-Prescription?id=".$prescription_id."';
+</script>
+        ";
+    } catch (Exception $e) {
+        $db_handle->rollback();
         echo "
         <script>
         window.location.href = 'Make-Prescription';

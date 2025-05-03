@@ -9,6 +9,10 @@ if(!isset($_SESSION['admin'])){
     <script>window.location.href = 'Login';</script>
     ";
 }
+
+if(isset($_GET['id'])){
+    $patient_details = $db_handle->runQuery("SELECT * FROM `patients_data` WHERE `patient_id` = {$_GET['id']}");
+}
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +132,7 @@ if(!isset($_SESSION['admin'])){
                 <!-- BEGIN col-10 -->
                 <div class="col-xl-12">
                     <!-- BEGIN row -->
-                    <form action="Insert">
+                    <form action="Insert" method="post">
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-5">
@@ -151,40 +155,47 @@ if(!isset($_SESSION['admin'])){
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <div class="row mt-3">
-                                                <div class="col-6">
-                                                    <div class="list-group mb-3">
-                                                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
-                                                            <img src="assets/img/user/user.jpg" alt="" class="w-35px h-35px object-fit-cover">
-                                                            <div class="flex-fill ps-3">
-                                                                <div class="fw-semibold d-flex align-items-center">
-                                                                    Previous Prescription 1 <span class="fa fa-circle text-success fs-4px ms-2"></span>
+
+                                            <?php if (isset($_GET['id'])) {
+                                                ?>
+                                                <div class="row mt-3">
+                                                    <div class="col-6">
+                                                        <div class="list-group mb-3">
+                                                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
+                                                                <img src="assets/img/user/user.jpg" alt="" class="w-35px h-35px object-fit-cover">
+                                                                <div class="flex-fill ps-3">
+                                                                    <div class="fw-semibold d-flex align-items-center">
+                                                                        Previous Prescription 1 <span class="fa fa-circle text-success fs-4px ms-2"></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
-                                                            <img src="assets/img/user/user-2.jpg" alt="" class="w-35px h-35px object-fit-cover">
-                                                            <div class="flex-fill ps-3">
-                                                                <div class="fw-semibold d-flex align-items-center">
-                                                                    Previous Prescription 2 <span class="fa fa-circle text-body text-opacity-50 fs-4px ms-2"></span>
+                                                            </a>
+                                                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
+                                                                <img src="assets/img/user/user-2.jpg" alt="" class="w-35px h-35px object-fit-cover">
+                                                                <div class="flex-fill ps-3">
+                                                                    <div class="fw-semibold d-flex align-items-center">
+                                                                        Previous Prescription 2 <span class="fa fa-circle text-body text-opacity-50 fs-4px ms-2"></span>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <?php
+                                            }?>
                                         </div>
                                     </div>
-                                    <form>
+                                    <?php if (isset($_GET['id'])) {
+                                    ?>
+                                    <form action="Insert" method="POST">
                                         <div class="card mt-5">
                                             <div class="card-body">
-                                                <input type="hidden" readonly="" class="form-control-plaintext" value="Patient ID">
+                                                <input type="hidden" readonly="" class="form-control-plaintext" value="<?php if(isset($_GET['id'])) echo $patient_details[0]['patient_id']; else echo '';?>" name="patient_id">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group row mb-3">
                                                             <label for="staticEmail" class="col-sm-4 col-form-label">Patient's Name</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" readonly="" class="form-control-plaintext" value="Test Patient">
+                                                                <input type="text" readonly="" class="form-control-plaintext" value="<?php if(isset($_GET['id'])) echo $patient_details[0]['full_name']; else echo '';?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -192,7 +203,7 @@ if(!isset($_SESSION['admin'])){
                                                         <div class="form-group row mb-3">
                                                             <label for="staticEmail" class="col-sm-4 col-form-label">Contact Number</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" readonly="" class="form-control-plaintext" value="01729277768">
+                                                                <input type="text" readonly="" class="form-control-plaintext" value="<?php if(isset($_GET['id'])) echo $patient_details[0]['contact_number']; else echo '';?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -200,7 +211,7 @@ if(!isset($_SESSION['admin'])){
                                                         <div class="form-group row mb-3">
                                                             <label for="staticEmail" class="col-sm-4 col-form-label">Age</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" readonly="" class="form-control-plaintext" value="27 yr">
+                                                                <input type="text" readonly="" class="form-control-plaintext" value="<?php if(isset($_GET['id'])) echo $patient_details[0]['age']; else echo '';?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -208,22 +219,91 @@ if(!isset($_SESSION['admin'])){
                                                         <div class="form-group row mb-3">
                                                             <label for="staticEmail" class="col-sm-4 col-form-label">Gender</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" readonly="" class="form-control-plaintext" value="Male">
+                                                                <input type="text" readonly="" class="form-control-plaintext" value="<?php if(isset($_GET['id'])) echo $patient_details[0]['gender']; else echo '';?>">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card mt-5">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="patient_complain">Patient's General Data</label>
+                                                            <textarea class="form-control" id="patient_data" name="patient_data" rows="5" style="color: #000000;"></textarea>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="patient_complain">Patient's Complains</label>
+                                                            <textarea class="form-control" id="patient_complain" name="patient_complain" rows="5" style="color: #000000;"></textarea>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="medical_tests">Medical Tests / Diagnosis</label>
+                                                            <textarea class="form-control" id="medical_tests" name="medical_tests" rows="5" style="color: #000000;"></textarea>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="doctor_observation">Doctor's Observation</label>
+                                                            <textarea class="form-control" id="doctor_observation" name="doctor_observation" rows="5" style="color: #000000;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div id="medicine-container">
+                                                            <div class="medicine-block">
+                                                                <div class="form-group mb-3" style="position: relative;">
+                                                                    <label class="form-label">Medicine Name </label>
+                                                                    <input type="text" class="form-control medicine-input" placeholder="Medicine Name" name="medicine[]">
+                                                                    <div class="suggestion-box bg-dark text-white border" style="position: absolute; width: 100%; z-index: 1000; display: none;"></div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <div class="form-group mb-3">
+                                                                            <label class="form-label">Dose </label>
+                                                                            <input type="text" class="form-control" placeholder="1 + 1 + 1" name="dose[]">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <div class="form-group mb-3">
+                                                                            <label class="form-label">Meal</label>
+                                                                            <select class="form-select" name="meal[]">
+                                                                                <option value="">-- Select Meal Time --</option>
+                                                                                <option value="Before Meal">Before Meal</option>
+                                                                                <option value="After Meal">After Meal</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="form-group mb-3">
+                                                                            <label class="form-label">Instruction / Duration</label>
+                                                                            <input type="text" class="form-control" placeholder="X Days" name="duration[]">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Add Medicine Button -->
+                                                        <button type="button" class="btn btn-theme me-2 mb-5 mt-3" id="add-medicine-btn">Add New Medicine</button>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group mb-3">
+                                                            <label class="form-label" for="doctor_observation">Advice or Instruction (if any)</label>
+                                                            <textarea class="form-control" id="doctor_observation" name="doctor_advice" rows="5" style="color: #000000;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-theme mb-5 mt-5" name="generate_prescription">Generate and Print</button>
                                     </form>
-
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-                            <div class="col-8">
-
                             </div>
                         </div>
                     </form>
@@ -251,40 +331,35 @@ if(!isset($_SESSION['admin'])){
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
 <script>
-    let editorInstance;
+    let editorInstances = {};
 
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
-            // Custom styling inside the editor
-            heading: {
-                options: [
-                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-                ]
-            },
-            // Custom CSS injected into the editable area
-            ckfinder: {
-                uploadUrl: '/your-upload-endpoint' // optional
-            },
-            // This is the important part:
-            editorConfig: function(config) {
-                config.uiColor = '#000000'; // For CKEditor 4 only
-            }
-        })
-        .then(editor => {
-            editorInstance = editor;
+    document.querySelectorAll('textarea.form-control').forEach((textarea) => {
+        ClassicEditor
+            .create(textarea, {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                    ]
+                },
+                ckfinder: {
+                    uploadUrl: '/your-upload-endpoint'
+                }
+            })
+            .then(editor => {
+                editorInstances[textarea.id] = editor;
 
-            // Apply custom styles to the editor content area
-            editor.editing.view.change(writer => {
-                writer.setStyle('background-color', '#000', editor.editing.view.document.getRoot());
-                writer.setStyle('color', '#fff', editor.editing.view.document.getRoot());
+                editor.editing.view.change(writer => {
+                    writer.setStyle('background-color', '#000', editor.editing.view.document.getRoot());
+                    writer.setStyle('color', '#fff', editor.editing.view.document.getRoot());
+                });
+            })
+            .catch(error => {
+                console.error(error);
             });
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -308,9 +383,65 @@ if(!isset($_SESSION['admin'])){
         });
 
         // When a suggestion is clicked
-        $(document).on('click', '.suggestion-item', function() {
-            $('#contactSearch').val($(this).text());
+        $(document).on('click', '.suggestion-item-contact', function() {
+            var contact = $(this).text();
+            var id = $(this).data('id');
+
+            $('#contactSearch').val(contact);
             $('#suggestions').fadeOut();
+
+            if (id) {
+                // Get the current URL
+                var url = new URL(window.location.href);
+
+                // Set or update the `id` parameter
+                url.searchParams.set('id', id);
+
+                // Reload the page with the new URL
+                window.location.href = url.toString();
+            }
+        });
+    });
+
+    function enableAutocomplete(input) {
+        input.on('keyup', function () {
+            const query = $(this).val();
+            const suggestionBox = $(this).siblings('.suggestion-box');
+            if (query.length >= 3) {
+                $.ajax({
+                    url: 'fetch_medicines.php',
+                    type: 'POST',
+                    data: { query: query },
+                    success: function (data) {
+                        suggestionBox.html(data).show();
+                    }
+                });
+            } else {
+                suggestionBox.hide();
+            }
+        });
+
+        input.siblings('.suggestion-box').on('click', '.suggestion-item', function () {
+            input.val($(this).text());
+            $(this).parent().hide();
+        });
+    }
+
+    $(document).ready(function () {
+        // Enable autocomplete for initial block
+        enableAutocomplete($('.medicine-input').first());
+
+        $('#add-medicine-btn').click(function () {
+            const newBlock = $('.medicine-block').first().clone();
+
+            // Reset values
+            newBlock.find('input, textarea').val('');
+            newBlock.find('input[type=checkbox], input[type=radio]').prop('checked', false);
+            newBlock.find('.suggestion-box').html('').hide();
+
+            // Append and re-enable autocomplete
+            $('#medicine-container').append(newBlock);
+            enableAutocomplete(newBlock.find('.medicine-input'));
         });
     });
 </script>

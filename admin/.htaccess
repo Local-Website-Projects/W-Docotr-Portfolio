@@ -19,6 +19,7 @@ RewriteRule ^Update$ update.php [L]
 RewriteRule ^Insert$ insert.php [L]
 RewriteRule ^Delete$ delete.php [L]
 RewriteRule ^Make-Prescription$ make_prescription.php [L]
+RewriteRule ^Print-Prescription$ print_prescription.php [L]
 
 
 # Remove "index.php" from URLs
