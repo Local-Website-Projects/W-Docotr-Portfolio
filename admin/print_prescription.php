@@ -162,19 +162,20 @@ if($_GET['id']){
                 <div class="doctor-info">
                     <h1>Dr. John Smith</h1>
                     <p>MBBS, MD - General Physician</p>
+                    <p>Reg No: 123456</p>
                 </div>
                 <div class="contact-info">
-                    <p>Reg No: 123456</p>
                     <p>Email: john.smith@clinic.com</p>
                     <p>ABC Health Clinic</p>
                     <p>123 Wellness Ave, New York</p>
+                    <p>Date: <?php echo date('d F, Y', strtotime($fetch_prescription_info[0]['inserted_at'])); ?></p>
                 </div>
             </div>
 
             <div class="patient-info">
                 <?php ?>
-                Name: <?php echo $fetch_patient_data[0]['full_name'];?> &nbsp; | &nbsp; Age: <?php echo $fetch_patient_data[0]['age'];?> &nbsp; | &nbsp; Gender: <?php echo $fetch_patient_data[0]['gender'];?> &nbsp; | &nbsp; Date: <?php
-                echo date('d F, Y', strtotime($fetch_prescription_info[0]['inserted_at']));
+                Name: <?php echo $fetch_patient_data[0]['full_name'];?> &nbsp; | &nbsp; Age: <?php echo $fetch_patient_data[0]['age'];?> &nbsp; | &nbsp; Gender: <?php echo $fetch_patient_data[0]['gender'];?> &nbsp; | &nbsp; Contact: <?php
+                echo $fetch_patient_data[0]['contact_number'];
                 ?>
             </div>
 

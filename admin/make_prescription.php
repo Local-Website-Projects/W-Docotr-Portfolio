@@ -151,7 +151,7 @@ if(isset($_GET['id'])){
                                                         <div class="form-group mb-3">
                                                             <label class="form-label" for="contactSearch">Start Typing Patient Registered Contact Number</label>
                                                             <input type="text" id="contactSearch" class="form-control" placeholder="Start Typing Patient Registered Contact Number" autocomplete="off">
-                                                            <div id="suggestions" style="position: absolute; background: transparent; border: 1px solid #ccc; z-index: 1000; color: #ffffff;"></div>
+                                                            <div id="suggestions" style="position: absolute; background: #000000; border: 1px solid #ccc; z-index: 1000; color: #ffffff;"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,22 +161,25 @@ if(isset($_GET['id'])){
                                                 <div class="row mt-3">
                                                     <div class="col-6">
                                                         <div class="list-group mb-3">
-                                                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
-                                                                <img src="assets/img/user/user.jpg" alt="" class="w-35px h-35px object-fit-cover">
-                                                                <div class="flex-fill ps-3">
-                                                                    <div class="fw-semibold d-flex align-items-center">
-                                                                        Previous Prescription 1 <span class="fa fa-circle text-success fs-4px ms-2"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center text-body">
-                                                                <img src="assets/img/user/user-2.jpg" alt="" class="w-35px h-35px object-fit-cover">
-                                                                <div class="flex-fill ps-3">
-                                                                    <div class="fw-semibold d-flex align-items-center">
-                                                                        Previous Prescription 2 <span class="fa fa-circle text-body text-opacity-50 fs-4px ms-2"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
+                                                            <?php
+                                                            $fetch_prev_ques = $db_handle->runQuery("SELECT * FROM `prescription_data` WHERE `patient_id`= {$_GET['id']}");
+                                                            $fetch_prev_ques_no = $db_handle->numRows("SELECT * FROM `prescription_data` WHERE `patient_id`= {$_GET['id']}");
+                                                            if($fetch_prev_ques_no > 0){
+                                                                for($i=0; $i<$fetch_prev_ques_no; $i++){
+                                                                    ?>
+                                                                    <a href="Print-Prescription?id=<?php echo $fetch_prev_ques[$i]['prescription_id'];?>" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center text-body">
+                                                                        <div class="flex-fill ps-3">
+                                                                            <div class="fw-semibold d-flex align-items-center">
+                                                                                <?php echo date("d F, Y", strtotime($fetch_prev_ques[$i]['inserted_at']));;?><span class="fa fa-circle text-success fs-4px ms-2"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                                <?php
+                                                            }
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>
