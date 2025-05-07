@@ -17,3 +17,7 @@
 <link href="assets/plugins/spectrum-colorpicker2/dist/spectrum.min.css" rel="stylesheet" />
 <link href="assets/plugins/select-picker/dist/picker.min.css" rel="stylesheet" />
 <link href="assets/plugins/jquery-typeahead/dist/jquery.typeahead.min.css" rel="stylesheet" />
+<link href="assets/plugins/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+<link href="assets/plugins/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+<link href="assets/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+<link href="assets/plugins/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />

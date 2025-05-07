@@ -63,9 +63,17 @@
             <div class="menu-item ">
                 <a href="Make-Prescription" class="menu-link">
 							<span class="menu-icon">
-								 <iconify-icon icon="ph:handbag-simple-duotone"></iconify-icon>
+								 <iconify-icon icon="ph:open-ai-logo-duotone"></iconify-icon>
 							</span>
                     <span class="menu-text">Prescription</span>
+                </a>
+            </div>
+            <div class="menu-item ">
+                <a href="Patient-Data" class="menu-link">
+							<span class="menu-icon">
+								 <iconify-icon icon="ph:first-aid-kit-duotone"></iconify-icon>
+							</span>
+                    <span class="menu-text">Patient List</span>
                 </a>
             </div>
 
